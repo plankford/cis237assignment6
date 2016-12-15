@@ -26,5 +26,10 @@ namespace cis237assignment6.Controllers
 
             return View();
         }
+
+        //public ActionResult Beverages()
+        //{
+        //    return View();
+        //}
     }
 }
