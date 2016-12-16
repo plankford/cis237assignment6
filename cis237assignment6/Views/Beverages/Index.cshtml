@@ -14,12 +14,14 @@
         @{ 
             using (Html.BeginForm("Filter", "Beverages", FormMethod.Post, new { @class = "form-inline" }))
             {
+                @*Validate the forgery token*@
+                @Html.AntiForgeryToken()
+
                 <label for="minPrice">Minimum Price</label>
                 @Html.TextBox("minPrice", (string)ViewBag.filterMinPrice)
 
                 <label for="maxPrice">Maximum Price</label>
                 @Html.TextBox("maxPrice", (string)ViewBag.filterMaxPrice)
-
                 <br /> 
                 <input type="submit", value="Filter" class="btn btn-info pull-right" />
             }

@@ -10,6 +10,9 @@ using cis237assignment6.Models;
 
 namespace cis237assignment6.Controllers
 {
+    //Protect every route that is taken
+    [Authorize]
+
     public class BeveragesController : Controller
     {
         private BeveragePLankfordEntities db = new BeveragePLankfordEntities();
@@ -47,7 +50,7 @@ namespace cis237assignment6.Controllers
             //Do the filter on the dataset. Use the where and send in more lambda expressions
             //to narrow the search down further.
             IEnumerable<Beverage> filtered = BeveragesToSearch.Where(beverage => beverage.price >= minPrice &&
-                                                                                 beverage.price <= maxPrice)
+                                                                                 beverage.price <= maxPrice);
                                                                                         
                                                                                                                                                            
 
@@ -158,6 +161,8 @@ namespace cis237assignment6.Controllers
 
         //Filter method that will take in the new data and submit it to the form. This will be stored
         //in the session so we can accces it later.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Filter()
         {
             String minPrice = Request.Form.Get("minPrice");
